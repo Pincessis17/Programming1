@@ -2,6 +2,50 @@ records = []                # Store all transactions
 total_balance = 0.0         # Running total
 
 #Defining the income tracker function
+def add_transaction(date, source, description, trans_type, amount):
+    """Append a transaction and update the running balance."""
+    global total_balance
+    if trans_type.lower() == "income":
+        total_balance += amount
+    else:
+        total_balance -= amount
+
+        records.append({
+        "Date": date,
+        "Source": source,             # for expenses, this will be the category
+        "Description": description,
+        "Type": trans_type.capitalize(),  # "Income" or "Expense"
+        "Amount": amount,
+        "Balance": total_balance
+    })
+def list_transactions():
+    print("\nAll Transactions:")
+    if not records: 
+        print("(no records yet)")
+        return
+    for r in records:
+        print(f"{r['Date']} | {r['Source']} | {r['Description']} | "
+              f"{r['Type']} | {r['Amount']:.2f} | Balance: {r['Balance']:.2f}")
+def filter_transactions(filter_type=None, filter_value=None):  #This is what thisfunction does:Find and show only the records that match what you searched for"""
+    print(f"\nFiltered Transactions ({filter_type}: {filter_value})")
+    found = False
+    for r in records:
+        if filter_type == "type" and r["Type"].lower() == filter_value.lower():
+            pass
+        elif filter_type == "source" and r["Source"].lower() == filter_value.lower():
+            pass
+        elif filter_type == "date" and r["Date"] == filter_value:
+            pass
+        else:
+            continue
+
+        found = True
+        print(f"{r['Date']} | {r['Source']} | {r['Description']} | "
+              f"{r['Type']} | {r['Amount']:.2f} | Balance: {r['Balance']:.2f}")
+    if not found:
+        print("No matching records found.")
+
+
 
 def income_tracker():
     while True:
@@ -34,19 +78,38 @@ def list_transactions():
     for r in records:
         print(f"{r['Date']} | {r['Source']} | {r['Description']} | {r['Type']} | {r['Amount']:.2f} | Balance: {r['Balance']:.2f}")        
     
-       
+def filter_menu():
+    print("\nFilter Options:")
+    print("1. Filter by Type (Income/Expense)")
+    print("2. Filter by Source/Category")
+    print("3. Filter by Date")
+    
+    choice = input("Choose an option: ")
+
+    if choice == "1":
+        val = input("Enter type (Income/Expense): ")
+        filter_transactions("type", val)
+    elif choice == "2":
+        val = input("Enter source/category (e.g., Food, Work): ")
+        filter_transactions("source", val)
+    elif choice == "3":
+        val = input("Enter date (YYYY-MM-DD): ")
+        filter_transactions("date", val)
+    else:
+        print("Invalid option.")
+
         
     # Summary Output
     
 
-    print(f"\nFinal Total Balance: {total_balance:.2f}")
+"""" print(f"\nFinal Total Balance: {total_balance:.2f}")
 
     return records, total_balance
 
 
 # Run the function
 if __name__ == "__main__":
-    all_records, final_balance = income_tracker()
+    all_records, final_balance = income_tracker()"""
 
 """if type_ == "income":
             total_balance += amount
