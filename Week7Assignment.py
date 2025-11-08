@@ -26,15 +26,15 @@ def list_transactions():
     for r in records:
         print(f"{r['Date']} | {r['Source']} | {r['Description']} | "
               f"{r['Type']} | {r['Amount']:.2f} | Balance: {r['Balance']:.2f}")
-def filter_transactions(filter_type=None, filter_value=None):  #This is what thisfunction does:Find and show only the records that match what you searched for"""
-    print(f"\nFiltered Transactions ({filter_type}: {filter_value})")
+def filter_transactions(filter_value=None):  #This is what thisfunction does:Find and show only the records that match what you searched for"""
+    print(f"\nFilter transactions  by: ({filter_value})")
     found = False
     for r in records:
-        if filter_type == "type" and r["Type"].lower() == filter_value.lower():
+        if r["Type"].lower() == filter_value.lower():
             pass
-        elif filter_type == "source" and r["Source"].lower() == filter_value.lower():
+        elif r["Source"].lower() == filter_value.lower():
             pass
-        elif filter_type == "date" and r["Date"] == filter_value:
+        elif r["Date"] == filter_value:
             pass
         else:
             continue
@@ -47,38 +47,9 @@ def filter_transactions(filter_type=None, filter_value=None):  #This is what thi
 
 
 
-def income_tracker():
-    while True:
-        trans_type = "income"  # Since this is an income tracker, we set type to income
-        date = input("Enter date (YYYY-MM-DD): ")
-        source = input("Enter income source: ")
-        description = input("Enter description: ")
-        amount = float(input("Enter amount: "))      
 
-def expense_tracker():
-    while True:
-        trans_type = "expense"  # Since this is an expense tracker, we set type to expense
-        date = input("Enter date (YYYY-MM-DD): ")
-        expense_category = input("Enter expense category(food,tansport,etc): ").capitalize()
-        description = input("Enter description: ")
-        amount = float(input("Enter amount: "))
-
-def add_transaction(date, source, description, trans_type, amount, total_balance):
-    records.append({
-        "Date": date,
-        "Source": source,
-        "Description": description,
-        "Type": trans_type,
-        "Amount": amount,
-        "Balance": total_balance
-    })
-
-def list_transactions():
-    print("\nAll Transactions:")
-    for r in records:
-        print(f"{r['Date']} | {r['Source']} | {r['Description']} | {r['Type']} | {r['Amount']:.2f} | Balance: {r['Balance']:.2f}")        
+def menu():
     
-def filter_menu():
     print("\nFilter Options:")
     print("1. Filter by Type (Income/Expense)")
     print("2. Filter by Source/Category")
