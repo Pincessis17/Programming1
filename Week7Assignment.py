@@ -50,14 +50,23 @@ def filter_transactions(filter_value=None):  #This is what thisfunction does:Fin
 
 def menu():
     
-    print("\nFilter Options:")
-    print("1. Filter by Type (Income/Expense)")
-    print("2. Filter by Source/Category")
-    print("3. Filter by Date")
-    
+    print("Welcome to the Income and Expense Tracker!")
+    while True:
+        print("\nMenu:")
+        print("1. Add Transaction")
+        print("2. List All Transactions")
+        print("3. Filter Transactions")
+        print("4. Exit")
+        choice = input("Choose an option: ")
+
+        if choice == "1":
+            date = input("Enter date (YYYY-MM-DD): ")
+            source = input("Enter source/category: ")
+            description = input("Enter description: ")
+   
     choice = input("Choose an option: ")
 
-    if choice == "1":
+    if choice == "1":  
         val = input("Enter type (Income/Expense): ")
         filter_transactions("type", val)
     elif choice == "2":
