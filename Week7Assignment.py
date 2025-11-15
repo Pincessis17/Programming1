@@ -53,18 +53,34 @@ def menu():
     print("Welcome to the Income and Expense Tracker!")
     while True:
         print("\nMenu:")
-        print("1. Add Transaction")
-        print("2. List All Transactions")
-        print("3. Filter Transactions")
-        print("4. Exit")
+        print("1. Add Income Transaction")
+        print("2. Add Expense Transaction")
+        print("3. List All Transactions")
+        print("4. Filter Transactions")
+        print("5. Exit")
         choice = input("Choose an option: ")
 
         if choice == "1":
             date = input("Enter date (YYYY-MM-DD): ")
+            amount = float(input("Enter amount: "))
             source = input("Enter source/category: ")
             description = input("Enter description: ")
-   
-    choice = input("Choose an option: ")
+        elif choice == "2":
+            date = input("Enter date (YYYY-MM-DD): ")
+            amount = float(input("Enter amount: "))
+            source = input("Enter source/category: ")
+            description = input("Enter description: ")
+        elif choice == "3":
+            list_transactions()
+        elif choice == "4":
+            filter_transactions(filter_value=None)
+        else:
+            print("Exiting the tracker. Goodbye!")
+            break
+           
+        
+
+    """choice = input("Choose an option: ")
 
     if choice == "1":  
         val = input("Enter type (Income/Expense): ")
@@ -82,28 +98,4 @@ def menu():
     # Summary Output
     
 
-"""" print(f"\nFinal Total Balance: {total_balance:.2f}")
-
-    return records, total_balance
-
-
-# Run the function
-if __name__ == "__main__":
-    all_records, final_balance = income_tracker()"""
-
-"""if type_ == "income":
-            total_balance += amount
-        elif type_ == "expense":
-            total_balance -= amount
-        else:
-            print("Invalid type. Please enter 'income' or 'expense'.")
-            continue
-            "_____________"
-
-        print(f"\n✅ Entry added successfully!")
-        print(f"💰 Current Balance: {total_balance:.2f}")
-
-        another = input("\nAdd another entry? (y/n): ").lower()
-        if another != "y":
-            break
 """
