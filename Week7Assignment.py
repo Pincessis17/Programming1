@@ -1,8 +1,17 @@
 records = []                # Store all transactions
-total_balance = 0.0  
+ 
 
+"""def add_transaction():
+        Append a transaction and update the running balance.
+        global total_balance
+        if trans_type == "income":
+            total_balance += amount
+        else:
+            total_balance -= amount"""
 # Defining the menu Function.
 def menu(): 
+    global total_balance
+    total_balance = 0.0 
     try:  
         
         print("Welcome to the Income and Expense Tracker!")
@@ -27,14 +36,17 @@ def menu():
             "Description": description,
             "Type": trans_type.capitalize(),  # "Income" or "Expense"
             "Amount": amount,
-            "Balance": total_balance
+            "Balance": total_balance + amount
+        
         })
+                total_balance += amount
+
                 print("Income transaction added.")
             elif choice == "2":
                 trans_type = "expense"
                 date = input("Enter date (YYYY-MM-DD): ")
                 amount = float(input("Enter amount: "))
-                category = input("Enter category: ")
+                source = input("Enter category: ")
                 description = input("Enter description: ")
 
                 records.append({
@@ -43,27 +55,24 @@ def menu():
             "Description": description,
             "Type": trans_type.capitalize(),  # "Income" or "Expense"
             "Amount": amount,
-            "Balance": total_balance
+            "Balance": total_balance - amount
         })
+                total_balance -= amount
                 print("Expense transaction added.")
+                
             elif choice == "3":
                 list_transactions()
             elif choice == "4":
-                filter_transactions(filter_value=None)
+                filter_value = input("Enter filter value (type/source/date): ")
+                filter_transactions(filter_value)
             else:
                 print("Exiting the tracker. Goodbye!")
                 break
-
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        menu()
     #Defining the income tracker function
-    def add_transaction(date, source, description, trans_type, amount):
-        """Append a transaction and update the running balance."""
-        global total_balance
-        if trans_type.lower() == "income":
-            total_balance += amount
-        else:
-            total_balance -= amount
-except:
-    print("Invalid input. Please try again.")
+    
 
 def list_transactions():
     print("\nAll Transactions:")
@@ -72,11 +81,10 @@ def list_transactions():
         return
     for r in records:
         print(f"{r['Date']} | {r['Source']} | {r['Description']} | "
-              f"{r['Type']} | {r['Amount']:.2f} | Balance: {r['total_balance']:.2f}")
+              f"{r['Type']} | {r['Amount']:.2f} | Balance: {r['Balance']:.2f}")
         
 #This is what thisfunction does:Find and show only the records that match what you searched for"""
-def filter_transactions(filter_value=None):  
-    print(f"\nFilter transactions  by: ({filter_value})")
+def filter_transactions(filter_value):  
     found = False
     for r in records:
         if r["Type"].lower() == filter_value.lower():
