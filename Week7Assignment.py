@@ -99,6 +99,20 @@ class BudgetTracker:
         print(f"{r['Date']} | {r['Source']} | {r['Description']} | "
               f"{r['Type']} | MUR {r['Amount']:.2f} | Balance: MUR {r['Balance']:.2f}")
 
+    def _continue_or_exit(self):
+        """
+        Asks the user whether they want to return to the main menu or exit.
+        Returns True to continue, False to exit.
+        """
+        while True:
+            choice = input("\nEnter 1 to return to the menu or 0 to exit: ").strip()
+            if choice == "1":
+                return True     # go back to menu
+            elif choice == "0":
+                print("Goodbye!")
+                return False    # exit program
+            else:
+                print("Invalid choice. Please enter 1 or 0.")
 
     # Defining the various core features of the budget tracker.
     # This will be done by creating methods and every method below  one major feature of the project.
@@ -124,6 +138,9 @@ class BudgetTracker:
         self.total_balance = new_balance
 
         print("Income transaction added.")
+        if not self._continue_or_exit():
+            exit()
+
 
     def add_expense(self):
         """This adds an expense transaction using the ExpenseTransaction class."""
@@ -140,6 +157,8 @@ class BudgetTracker:
         self.total_balance = new_balance
 
         print("Expense transaction added.")
+        if not self._continue_or_exit():
+            exit()
 
 
     def list_transactions(self):
@@ -151,6 +170,9 @@ class BudgetTracker:
 
         for r in self.records:
             self._print_transaction(r)
+
+        if not self._continue_or_exit():
+            exit()
 
 
     #          Defining the Filtering method
@@ -207,6 +229,9 @@ class BudgetTracker:
         if not found:
             print("No matching results.")
 
+            if not self._continue_or_exit():
+                exit()
+
 
 
     #               Defining the method for Summarizing the Budget 
@@ -248,6 +273,9 @@ class BudgetTracker:
         for cat, amt in category_totals.items():
             print(f"{cat.capitalize()}: MUR{amt:.2f}")
 
+            if not self._continue_or_exit():
+                exit()
+
 
     #               Defining the Undo Last Transaction method
     # This will removes the most recent transaction and recalculates balance.
@@ -264,6 +292,10 @@ class BudgetTracker:
         # Update balance
         self.total_balance = self.records[-1]["Balance"] if self.records else 0.0
         print(f"New balance: MUR{self.total_balance:.2f}")
+        
+        if not self._continue_or_exit():
+            exit()
+
 
 
     #            Defining the main Menu Loop 
