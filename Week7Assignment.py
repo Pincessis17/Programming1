@@ -97,7 +97,7 @@ class BudgetTracker:
     def _print_transaction(self, r):
         """This helper function just gives a Standardized way the transactions are displayed."""
         print(f"{r['Date']} | {r['Source']} | {r['Description']} | "
-              f"{r['Type']} | {r['Amount']:.2f} | Balance: {r['Balance']:.2f}")
+              f"{r['Type']} | MUR {r['Amount']:.2f} | Balance: MUR {r['Balance']:.2f}")
 
 
     # Defining the various core features of the budget tracker.
@@ -240,13 +240,13 @@ class BudgetTracker:
         net_balance = total_income - total_expense
 
         print("\n===== Budget Summary =====")
-        print(f"Total Income:   {total_income:.2f}Rs")
-        print(f"Total Expenses: {total_expense:.2f}Rs")
-        print(f"Net Balance:    {net_balance:.2f}Rs")
+        print(f"Total Income:   MUR {total_income:.2f}")
+        print(f"Total Expenses: MUR {total_expense:.2f}")
+        print(f"Net Balance:    MUR {net_balance:.2f}")
 
         print("\n--- Category Totals ---")
         for cat, amt in category_totals.items():
-            print(f"{cat.capitalize()}: {amt:.2f}Rs")
+            print(f"{cat.capitalize()}: MUR{amt:.2f}")
 
 
     #               Defining the Undo Last Transaction method
@@ -263,7 +263,7 @@ class BudgetTracker:
 
         # Update balance
         self.total_balance = self.records[-1]["Balance"] if self.records else 0.0
-        print(f"New balance: {self.total_balance:.2f}Rs")
+        print(f"New balance: MUR{self.total_balance:.2f}")
 
 
     #            Defining the main Menu Loop 
