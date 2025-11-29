@@ -42,7 +42,7 @@ Month (e.g., 2025-10)
 
 (5) It also allows you to UNDO LAST TRANSACTION
 
-    In essence, ff you make a mistake, you can remove the last entry.
+    In essence, if you make a mistake, you can remove the last entry.
 
 (6) Finally, the project checks INPUT VALIDATION
 
@@ -54,7 +54,7 @@ REQUIREMENTS : Python 3
 
 Steps
 
-    1) Clone the project repository:{git clone <repo-url>}
+    1) Clone the project repository:{git clone https://github.com/Pincessis17/Programming1.git}
 
     2) Open the folder:{cd Assignment}
 
