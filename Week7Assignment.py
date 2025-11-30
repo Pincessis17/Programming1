@@ -85,7 +85,7 @@ class BudgetTracker:
         """ this function ensures the user enters a valid number by repeatedly asking until the input can be converted to float.
             It prevents crashes from invalid input and avoids repeating validation code in multiple places.(e.g., typing 'ten' instead of 10
         would normally crash the program) so this repeats the prompt until a float is entered
-            Provides clean numeric data for calculations and keeps add_income() and add_expense() simpler.
+            It Provides clean numeric data for calculations and keeps add_income() and add_expense() simpler.
         """
         while True:
             value = input(prompt)
@@ -95,7 +95,9 @@ class BudgetTracker:
                 print("Invalid amount. Please enter a valid number.")
 
     def _print_transaction(self, r):
+
         """This helper function just gives a Standardized way the transactions are displayed."""
+
         print(f"{r['Date']} | {r['Source']} | {r['Description']} | "
               f"{r['Type']} | MUR {r['Amount']:.2f} | Balance: MUR {r['Balance']:.2f}")
 
@@ -138,6 +140,7 @@ class BudgetTracker:
         self.total_balance = new_balance
 
         print("Income transaction added.")
+
         if not self._continue_or_exit():
             exit()
 
@@ -157,6 +160,7 @@ class BudgetTracker:
         self.total_balance = new_balance
 
         print("Expense transaction added.")
+        
         if not self._continue_or_exit():
             exit()
 
