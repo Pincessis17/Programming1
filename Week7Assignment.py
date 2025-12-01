@@ -233,7 +233,7 @@ class BudgetTracker:
         if not found:
             print("No matching results.")
 
-            if not self._continue_or_exit():
+        if not self._continue_or_exit():
                 exit()
 
 
@@ -277,7 +277,7 @@ class BudgetTracker:
         for cat, amt in category_totals.items():
             print(f"{cat.capitalize()}: MUR{amt:.2f}")
 
-            if not self._continue_or_exit():
+        if not self._continue_or_exit():
                 exit()
 
 
