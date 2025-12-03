@@ -170,14 +170,12 @@ class BudgetTracker:
         print("\n--- All Transactions ---")
         if not self.records:
             print("(no records yet)")
-            return
-
-        for r in self.records:
-            self._print_transaction(r)
+        else:
+            for r in self.records:
+                self._print_transaction(r)
 
         if not self._continue_or_exit():
             exit()
-
 
     #          Defining the Filtering method
     # Allows filtering by:
@@ -234,7 +232,7 @@ class BudgetTracker:
             print("No matching results.")
 
         if not self._continue_or_exit():
-                exit()
+            exit()
 
 
 
@@ -334,4 +332,8 @@ class BudgetTracker:
 
 if __name__ == "__main__":
     tracker = BudgetTracker()
-    tracker.run()
+    try:
+        tracker.run()
+    except KeyboardInterrupt:
+        print("\nProgram interrupted by user. Goodbye!")
+
